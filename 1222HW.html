@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css " href="1222HWcss.css">
+</head>
+<body>
+<div class="GoodLuck">
+	 <h2>JS Guessing Game</h2>
+	 <p>Your Guess(1~100)</p>
+     <input type="text" id="guessplace" name="guessplace" size="25" maxlength="30"></label>
+     <style type="text/css">
+     	#guessplace{
+     		width: 200px;
+     		height: 40px;
+     	}
+     </style>
+    <br><br>
+	<button class="play" id="play" >play</button>
+
+	
+	<br><br>
+	<p class="result">Result<br>
+	   <span id="a" >   </span></p>
+</div>
+<script>
+    var rand=Math.floor(Math.random()*10+1);
+    var max=100;
+    	var min=1;
+    window.addEventListener("load",start);
+    function start(){
+    	var button=document.getElementById('play');
+    	button.addEventListener("click",go);
+    	
+
+    }
+    
+    function go(){
+      
+      const guessplace=document.getElementById('guessplace');
+      var guess=guessplace.value;
+      
+		        if(rand==guess){
+			       bingo();
+			   
+			    }else if(guess<rand){
+			       small();
+			     
+			    }else if(guess>rand){
+			    	big();
+			    
+			    }
+	  
+    }
+
+    function bingo(){
+    	alert("BINGO");
+    	location.reload();
+    }
+
+    function small(){
+    	var omg=document.createElement('span');
+    	var br=document.createElement('br');
+    	const guessplace=document.getElementById('guessplace');
+      var guess=guessplace.value;
+    	let div=document.createElement('div');
+    	var t=document.createTextNode( guess +" ~ "+max);
+			       omg.appendChild(t);
+			       omg.appendChild(br);
+			       document.getElementById("a").appendChild(omg);
+			       changemin(guess);
+			       start();
+    }
+
+    function big(){
+    	var omg=document.createElement('span');
+    	var br=document.createElement('br');
+    	const guessplace=document.getElementById('guessplace');
+      var guess=guessplace.value;
+    	let div=document.createElement('div');
+    	var t=document.createTextNode(min+ " ~ "+ guess);
+			    	omg.appendChild(t);
+			       omg.appendChild(br);
+			       document.getElementById("a").appendChild(omg);
+			       changemax(guess);
+			       start();
+    }
+
+    function changemax(m){
+    	return max=m;
+    }
+
+    function changemin(n){
+    	return min=n;
+    }
+    
+
+
+</script>
+
+</body>
+</html>
